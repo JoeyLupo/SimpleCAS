@@ -39,7 +39,7 @@ The `SymbolicNum` type is used to represent all integer constants in SimpleCAS a
 However, note that a Python `int` will be converted to a `SymbolicNum` only when it is an operand in an expression involving a SimpleCAS `Expression`. For example, consider
 
 ```python
->>> a = SymbolicNum("a")
+>>> a = SymbolicVar("a")
 >>> print(a + 1 + 2)
 ((a + 1) + 2)
 ```
@@ -47,7 +47,7 @@ However, note that a Python `int` will be converted to a `SymbolicNum` only when
 Here, the first operation executed in Python is `(a + 1)`, which involves the `SymbolicVar` (a subclass of `Expression`) `a` and the `int` 1. The `int` is converted into a `SymbolicNum` and then the resulting `CompoundExpression` is an operand in the second operation with the `int` 2, which is again converted to a `SymbolicNum`. On the other hand, consider
 
 ```python
->>> a = SymbolicNum("a")
+>>> a = SymbolicVar("a")
 >>> print(a + 1 * 2)
 ((a + 2)
 ```
@@ -55,7 +55,7 @@ Here, the first operation executed in Python is `(a + 1)`, which involves the `S
 Here, the first operation executed in Python is `(1 * 2)`, which is an expression involving only `int`s that evaluates to `2`. So to express `(a + 1 * 2)` (which is a valid expression as defined in the spec) in SimpleCAS, you would have to write:
 
 ```python
->>> a = SymbolicNum("a")
+>>> a = SymbolicVar("a")
 >>> print(a + SymbolicNum(1) * 2)
 (a + (1 × 2))
 ```
