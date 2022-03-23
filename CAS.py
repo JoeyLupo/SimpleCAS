@@ -1,7 +1,7 @@
 """
 A simple computer algebra system which extends the Python interpreter.
 
-EXAMPLES::
+EXAMPLES:
 
 >>> a = SymbolicVar("a")
 >>> ten = SymbolicNum(10)
@@ -411,11 +411,12 @@ class SymbolicNum(Expression):
             op: Operator, 
             right: bool = False) -> "Expression":
         """
-        Here we could overwrite Expression._op as well as the __add__,
-        __mul__, etc. methods to automatically reduce an expression of the
-        form SymbolicNum(i) op SymbolicNum(j) -> SymbolicNum(i op j) whenever
-        i op j forms a valid non-negative integer. However, since the spec 
-        does not say to make such simplifications, we do not implement this
+        For now, we simply use the same behavior as for other types of 
+        `Expression`s, though in the future we could overwrite 
+        Expression._op as well as the __<op>__methods to automatically reduce
+        SymbolicNum(i) op SymbolicNum(j) -> SymbolicNum(i op j) when i op j 
+        forms a valid non-negative integer. However, since the spec does not 
+        say to make such simplifications, we do not implement this
         functionality. 
         """
-        pass
+        return super()._op(other, op, right)
