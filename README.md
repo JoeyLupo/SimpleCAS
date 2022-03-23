@@ -75,7 +75,7 @@ Internally, symbolic expressions are represented as binary trees. For instance, 
                            (x)  (1)
 
 
-Calling the `commute()` function on the above expression is just the operation of swapping the two sub-trees at the root.
+Calling the `commute()` function on the above `CompoundExpression` is just the operation of swapping the two sub-trees at the root.
 
 I have included a few function declarations in CAS.py for some functions we might want to add in a future version of SimpleCAS, such as a 
 specialization method which transforms a `SymbolicVar` to a `SymbolicNum`, or a method which automatically simplifies a `CompoundExpression` 
